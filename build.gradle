@@ -1,2 +1,15 @@
 apply plugin: "java"
 apply plugin: "eclipse"
+
+// doFirst(), doLast(), task configuration
+task initializeDatabase
+initializeDatabase << { println 'update database schema'}
+initializeDatabase { println 'configuring database connection'}
+initializeDatabase.doLast { println "dolast" }
+initializeDatabase.doLast { println "second doLast" }
+initializeDatabase.doFirst { println 'connect to database'}
+
+// onlyIf()
+task createSchema << {println 'create database schema'}
+task loadTestData(dependsOn: createSchema)<<{println 'load test data'}
+loadTestData.onlyIf {System.properties['load.data'] == 'true';}
