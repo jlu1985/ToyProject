@@ -1,0 +1,18 @@
+apply plugin: "java"
+task upper << {
+        String someString = "My Name"
+        println "Original: " + someString
+        println "Upper Case: " + someString.toUpperCase()
+}
+
+task count(dependsOn: upper) << {
+        4.times {print "$it "}
+}
+
+task hello << {
+    println "Hello World"
+}
+
+hello.doLast {
+    println "Greeting from the $hello.name task"
+}    
