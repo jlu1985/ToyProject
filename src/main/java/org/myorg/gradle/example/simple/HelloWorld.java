@@ -1,4 +1,4 @@
-﻿package org.myorg.gradle.example.simple;
+package org.myorg.gradle.example.simple;
 
 public class HelloWorld {
 	public static void main(String[] args){
