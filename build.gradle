@@ -1,6 +1,20 @@
 apply plugin: "java"
 apply plugin: "eclipse"
 
+group = 'org'
+archivesBaseName = 'ToyProjectWithGradle'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+	flatDir name: 'localDiskRepo', dirs: 'lib'
+}
+
+dependencies {
+	testRuntime 'junit:junit:4.10'
+	compile fileTree(dir:'lib',includes:['*.jar'])
+}
+
 // doFirst(), doLast(), task configuration
 task initializeDatabase
 initializeDatabase << { println 'update database schema'}
@@ -13,3 +27,4 @@ initializeDatabase.doFirst { println 'connect to database'}
 task createSchema << {println 'create database schema'}
 task loadTestData(dependsOn: createSchema)<<{println 'load test data'}
 loadTestData.onlyIf {System.properties['load.data'] == 'true';}
+
