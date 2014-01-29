@@ -1,4 +1,4 @@
-﻿// Comment
+// Comment
 
 // variable declaration
 var x;

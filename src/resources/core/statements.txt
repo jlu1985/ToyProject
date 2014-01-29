@@ -1,0 +1,26 @@
+Statement   Syntax                  Purpose
+break       break [label];          Exit from the innermost loop
+case        case expression:        Label a statement within a switch
+continue    continue [label];       Begin next iteration of the innermost loop
+debugger    debugger;               Debugger breakpoint
+default     default:                Label the default statement within a switch
+do/while    do statement while      An alternative to the while loop
+empty       ;                       Do nothing
+for         for(init;test;incr)     An Easy to use loop
+                statement
+for/in      for(var in list)        Enumerate the elements of a list
+                statement
+function    function a([param...])  Declare a function named a
+if/else     if (expr) statement     Execute statement if true
+label       label: statement        Give statement the name label
+return      return [expression];    Return a value from a function
+switch      switch (expression)     Multiway branch to case or defaults: labels
+                {statements}
+throw       throw expression;       Throw an exception
+try         try {statements}        Handle exception
+            [catch {handler statements}]
+            [finally {cleanup statements}]
+use strict  "use strict"            Apply strict mode restrictions to script
+var         var name [= expr]       Declare and initialize one or more variables
+while       while(expr) statement   A basic loop construct
+with        with(object) statement  Extend the scope chain
