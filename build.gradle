@@ -15,7 +15,10 @@ eclipse {
         name = 'ToyProject'
         comment = 'Experiment project'
     }
-    
+    jdt {
+        sourceCompatibility = 1.6;
+        targetCompatibility = 1.6;
+    }
     classpath {
     downloadSources = true
     downloadJavadoc = true
@@ -36,7 +39,7 @@ dependencies {
 // doFirst(), doLast(), task configuration
 task initializeDatabase
 initializeDatabase << { println 'update database schema'}
-initializeDatabase { println 'configuring database connection'}
+//initializeDatabase { println 'configuring database connection'}
 initializeDatabase.doLast { println "dolast" }
 initializeDatabase.doLast { println "second doLast" }
 initializeDatabase.doFirst { println 'connect to database'}
@@ -46,3 +49,5 @@ task createSchema << {println 'create database schema'}
 task loadTestData(dependsOn: createSchema)<<{println 'load test data'}
 loadTestData.onlyIf {System.properties['load.data'] == 'true';}
 
+task taskX << { println 'task x'}
+task taskY << { println 'task y'}
