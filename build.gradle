@@ -1,5 +1,6 @@
 apply plugin: "java"
 apply plugin: "eclipse"
+apply plugin:'project-report'
 
 group = 'org'
 archivesBaseName = 'ToyProjectWithGradle'
@@ -41,6 +42,7 @@ dependencies {
 
 // doFirst(), doLast(), task configuration
 task initializeDatabase (group:TASKGROUP_FUN)
+initializeDatabase.description 'Copied from book to lean doFirst, doLast and task definition'
 initializeDatabase << { println 'update database schema'}
 //initializeDatabase { println 'configuring database connection'}
 initializeDatabase.doLast { println "dolast" }
@@ -63,10 +65,21 @@ tryClosure.doLast() { println 'Closure attached to method in this format ".doLas
 tryClosure.doLast { println 'Closure without parenthesis ".doLast {...}"'; }
 tryClosure.doLast({ println 'Closure inside parenthesis ".doLast({...})"'; })
 
-task tryCopy(type: Copy, group:TASKGROUP_FUN) { 
+task tryCopy(type:Copy) { 
+    group TASKGROUP_FUN
+    description 'Copies resources'
     from('input').include('*.txt');
     into('output')
 }
 
-tryCopy.doFirst { println 'About to copy ' + it.getSource().getAsPath() }
+tryCopy.doFirst { println 'About to copy ' + it.source.getFiles() }
 tryCopy.doLast { println 'files copied into ' + it.getDestinationDir() }
+
+task tryExternalProperties {
+    group TASKGROUP_FUN
+    description 'loads external properites from gradle.property'
+}
+
+tryExternalProperties.doLast { println "Using gradle.properties, camelCaseProperty = $camelCaseProperty" }
+tryExternalProperties.doLast { println "Using project default properties project =  $project" }
+//tryExternalProperties.doLast { println "dotted properties from gradle.properties, custom.property = $(property('org.jl.custom.property'))" }
