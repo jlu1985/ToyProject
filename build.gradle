@@ -10,14 +10,19 @@ repositories {
 	flatDir name: 'localDiskRepo', dirs: 'lib'
 }
 
+ext {
+    TASKGROUP_FUN = "Experiment"
+    JAVA_VERSION ="1.6";
+}
+
 eclipse {
     project {
         name = 'ToyProject'
         comment = 'Experiment project'
     }
     jdt {
-        sourceCompatibility = 1.6;
-        targetCompatibility = 1.6;
+        sourceCompatibility = JAVA_VERSION;
+        targetCompatibility = JAVA_VERSION;
     }
     classpath {
     downloadSources = true
@@ -27,8 +32,6 @@ eclipse {
 }
 
 
-sourceCompatibility = '1.6'
-
 dependencies {
 	testCompile 'junit:junit:4.10'
 	testCompile 'org.mockito:mockito-all:1.9.5'
@@ -37,7 +40,7 @@ dependencies {
 
 
 // doFirst(), doLast(), task configuration
-task initializeDatabase
+task initializeDatabase (group:TASKGROUP_FUN)
 initializeDatabase << { println 'update database schema'}
 //initializeDatabase { println 'configuring database connection'}
 initializeDatabase.doLast { println "dolast" }
@@ -45,17 +48,25 @@ initializeDatabase.doLast { println "second doLast" }
 initializeDatabase.doFirst { println 'connect to database'}
 
 // onlyIf()
-task createSchema << {println 'create database schema'}
-task loadTestData(dependsOn: createSchema)<<{println 'load test data'}
+task createSchema(group:TASKGROUP_FUN) << {println 'create database schema'}
+task loadTestData(dependsOn: createSchema,group:TASKGROUP_FUN)<<{println 'load test data'}
 loadTestData.onlyIf {System.properties['load.data'] == 'true';}
 
-task taskX << { println 'task x'}
-task taskY << { println 'task y'}
+task taskX (group:TASKGROUP_FUN) << { println 'task x'}
+task taskY (group:TASKGROUP_FUN) << { println 'task y'}
 
-task tryClosure << {
+task tryClosure (group:TASKGROUP_FUN) << {
     println 'The value of it is : ' + it;
 }
 
 tryClosure.doLast() { println 'Closure attached to method in this format ".doLast() {...}'; }
 tryClosure.doLast { println 'Closure without parenthesis ".doLast {...}"'; }
 tryClosure.doLast({ println 'Closure inside parenthesis ".doLast({...})"'; })
+
+task tryCopy(type: Copy, group:TASKGROUP_FUN) { 
+    from('input').include('*.txt');
+    into('output')
+}
+
+tryCopy.doFirst { println 'About to copy ' + it.getSource().getAsPath() }
+tryCopy.doLast { println 'files copied into ' + it.getDestinationDir() }
