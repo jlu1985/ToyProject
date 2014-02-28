@@ -51,3 +51,11 @@ loadTestData.onlyIf {System.properties['load.data'] == 'true';}
 
 task taskX << { println 'task x'}
 task taskY << { println 'task y'}
+
+task tryClosure << {
+    println 'The value of it is : ' + it;
+}
+
+tryClosure.doLast() { println 'Closure attached to method in this format ".doLast() {...}'; }
+tryClosure.doLast { println 'Closure without parenthesis ".doLast {...}"'; }
+tryClosure.doLast({ println 'Closure inside parenthesis ".doLast({...})"'; })
