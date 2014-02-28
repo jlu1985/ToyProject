@@ -6,14 +6,18 @@ group = 'org'
 archivesBaseName = 'ToyProjectWithGradle'
 version = '0.0.1-SNAPSHOT'
 
-repositories {
-	mavenCentral()
-	flatDir name: 'localDiskRepo', dirs: 'lib'
+ext {
+    TASKGROUP_FUN = "Experiment - Entry"
+    TASKGROUP_ADVANCED ="Experiment - Advanced"
+    JAVA_VERSION ="1.6";
+    
+    
+    
 }
 
-ext {
-    TASKGROUP_FUN = "Experiment"
-    JAVA_VERSION ="1.6";
+repositories {
+	mavenCentral()
+//	flatDir name: 'localDiskRepo', dirs: 'lib'
 }
 
 eclipse {
@@ -83,3 +87,24 @@ task tryExternalProperties {
 tryExternalProperties.doLast { println "Using gradle.properties, camelCaseProperty = $camelCaseProperty" }
 tryExternalProperties.doLast { println "Using project default properties project =  $project" }
 //tryExternalProperties.doLast { println "dotted properties from gradle.properties, custom.property = $(property('org.jl.custom.property'))" }
+
+
+task listJars(group:TASKGROUP_ADVANCED,description:"Print each, copied form doc") << {
+    println "About to print all compiled files"
+    // File file -> stands for closure argument
+    configurations.testCompile.each { File file -> println file.name }
+    //
+    
+}
+
+task defineCollection(group:TASKGROUP_ADVANCED,description:"Define a Map, and Set,and list") << {
+    def testMap = [dir:"dirName",include:"onething", includes:['set item 1','set item 2']];
+    println testMap.dir;
+    println testMap.include;
+    //for each loop
+    testMap.includes.each { item -> println item };
+    
+    def list = ["item 1", "item 2", "item 3"]
+    list.each { item -> println item }
+}
+
