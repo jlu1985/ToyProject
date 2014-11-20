@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 ext {
     TASKGROUP_FUN = "Experiment - Entry"
     TASKGROUP_ADVANCED ="Experiment - Advanced"
-    JAVA_VERSION ="1.6";
+    JAVA_VERSION ="1.7";
     
     
     
