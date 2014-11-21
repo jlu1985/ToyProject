@@ -112,7 +112,15 @@ tr {
 			$('tr:even').addClass('alt');
 
 			// textual selector (:contains(EXACT MATCH))
-			$('td:contains(Henry)').addClass('highlight');
+// 			$('td:contains(Henry)').addClass('highlight');
+			
+			// Styling specific cells adding highlight to next sibling after Henry
+// 			$('td:contains(Henry)').next().addClass('highlight');
+			
+			//Traversing uses prev(), next(), nextAll(), prevAll(), siblings()
+			
+			// use addBack() to include traversed siblings and itself
+			$('td:contains(Henry)').nextAll().addBack().addClass('highlight');
 		})
 	</script>
 	<h2>Shakespeare's Plays</h2>
