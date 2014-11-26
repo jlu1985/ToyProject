@@ -5,3 +5,4 @@ chapter|read|comments
 4|X|n/a
 5||skipped
 6|X|read but hard to follow
+7||7.18
