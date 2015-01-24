@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="playground"
+	xmlns="playground" elementFormDefault="qualified">
+
+    <element name="lotto" type="lotto"/>
+	<element name="persons" type="persons"/>
+	<element name="person" type="person"/>
+	<element name="name" type="nameType"/>
+
+	<complexType name="game">
+		<simpleContent>
+			<extension base="xs:string"></extension>
+		</simpleContent>
+	</complexType>
+
+
+    <complexType name="lotto">
+        <all>
+        	<element name="date" type="xs:date" minOccurs="1"
+        		maxOccurs="1">
+        	</element>
+        	<element name="note" type="xs:string" minOccurs="0"
+        		maxOccurs="1">
+        	</element>
+			<element ref="persons" minOccurs="0" maxOccurs="1"></element>
+        </all>
+        
+    </complexType>
+
+    <complexType name="persons">
+    	<all>
+    		<element ref="person" minOccurs="0" maxOccurs="unbounded"></element>
+    	</all>
+    </complexType>
+
+    
+    <complexType name="person">
+    	<sequence>
+    		<element ref="name"></element>
+    	</sequence>
+    	<attribute name="contribution" type="xs:double"></attribute>
+    </complexType>
+    
+
+    <attribute name="name" type="xs:string"></attribute>
+
+    <complexType name="nameType">
+    <xs:restriction></xs:restriction>
+    		<xs:emumeration value="Jia Lu"/>
+    </complexType>
+    
+</schema>

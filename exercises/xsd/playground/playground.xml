@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lotto xmlns="playground" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="playground playgroundSchema.xsd">
+<date></date>
+<note></note>
+<persons><person ><sl></sl></person>
+</persons>
+</lotto>
