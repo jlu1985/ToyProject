@@ -10,9 +10,7 @@ ext {
     TASKGROUP_FUN = "Experiment - Entry"
     TASKGROUP_ADVANCED ="Experiment - Advanced"
     JAVA_VERSION ="1.7";
-    
-    
-    
+    SPRING_VERSION = "4.1.4.RELEASE"
 }
 
 repositories {
@@ -41,6 +39,11 @@ dependencies {
 	testCompile 'junit:junit:4.10'
 	testCompile 'org.mockito:mockito-all:1.9.5'
 	compile fileTree(dir:'lib',includes:['*.jar'])
+
+	compile "org.springframework:spring-core:$SPRING_VERSION"
+	compile "org.springframework:spring-context:$SPRING_VERSION"
+	compile "org.springframework:spring-beans:$SPRING_VERSION"
+	compile "org.springframework:spring-expression:$SPRING_VERSION"
 }
 
 
