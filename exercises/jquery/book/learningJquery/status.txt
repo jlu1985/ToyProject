@@ -1,0 +1,8 @@
+chapter|read|comments
+1|X|n/a
+2|X|n/a
+3|X|n/a
+4|X|n/a
+5||skipped
+6|X|read but hard to follow
+7||7.18
