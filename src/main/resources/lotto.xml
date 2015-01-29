@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Lotto>
+	<Date>2015-01-26</Date>
+	<Game>POWERBALL</Game>
+	<TicketHolder>Jeff Cai</TicketHolder>
+	<TotalContributors>11</TotalContributors>
+	<Stats>
+		<Cash>29</Cash>
+		<Prize>2</Prize>
+		<SumShares>1</SumShares>
+		<Total>31</Total>
+	</Stats>
+	<Contributors>
+		<Contributor name="Alex Leyzerovich" contribution="1" shares="0.0344827586206897"/>
+		<Contributor name="Brenda Alexander" contribution="2" shares="0.0689655172413793"/>
+		<Contributor name="Daniel Malino" contribution="3" shares="0.103448275862069"/>
+		<Contributor name="Jeff Cai" contribution="5" shares="0.172413793103448"/>
+		<Contributor name="Jia Lu" contribution="1" shares="0.0344827586206897"/>
+		<Contributor name="Jorge Cervantes" contribution="1" shares="0.0344827586206897"/>
+		<Contributor name="Kevin Wong" contribution="0" shares="0"/>
+		<Contributor name="Michael Melamenchuk" contribution="2" shares="0.0689655172413793"/>
+		<Contributor name="Orlando Gonzalez" contribution="5" shares="0.172413793103448"/>
+		<Contributor name="Robert Cruz" contribution="1" shares="0.0344827586206897"/>
+		<Contributor name="Tong(Mel) Fu" contribution="5" shares="0.172413793103448"/>
+		<Contributor name="Toni Thomas" contribution="3" shares="0.103448275862069"/>
+	</Contributors>
+	<Notes>
+		<Entry>1note</Entry>
+		<Entry>2note</Entry>
+	</Notes>
+</Lotto>
