@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: Verdana,Geneva,sans-serif;
+	background: #FFF0B2;
+}
+#recalculate {
+	padding:10px;
+}
+#recalculate .recal {
+	display:block;l
+}
+
+#resultHolder {
+	padding: 25px;
+}
+#result {
+	font-size: 1.5em;
+	padding: 0px 5px 0px 5px;
+}
+
