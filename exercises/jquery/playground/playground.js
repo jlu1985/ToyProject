@@ -24,7 +24,7 @@ function calTotal() {
 
 // Section two function: Counting characters
 function getCount(field, callback) {
-	'use strick';
+	'use strict';
 	var $field = field;
 	var count = $field.val().length;
 	var limit = $field.attr('maxLength');
@@ -33,7 +33,7 @@ function getCount(field, callback) {
 }
 
 function updateCharLimit(field, limit, count) {
-	'use strick';
+	'use strict';
 	var $field = field;
 	var html = count + " of " + limit;
 	$field.text(html);
