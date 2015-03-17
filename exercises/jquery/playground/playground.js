@@ -1,25 +1,27 @@
 /**
  * 
  */
+function isNotNumber(value) {
+	return (isNaN(value) || value == null || value === '');
+}
 
-$(document).ready(function(){
+function calTotal() {
+	var result = $('#cal-result');
+	var inputs = $('#calculateTotal > input.cal-input')
+
+	var total = 0;
+
+	inputs.each(function(i, el) {
+		total += parseFloat(isNotNumber(el.value) ? 0 : el.value)
+	});
+
+	result.text(total);
+};
+
+$(document).ready(function() {
 	'use strict';
-	
-	var recalTotal = function(){
-		var result = $('#result');
-		var inputs = $('#recalculate > input.recal')
-		
-		var total = 0;
-		
-		inputs.each(function(i,el)	{
-			total+=parseFloat(el.value);
-		});
-		
-		result.text(total);
-	};
-	
-	$('#recalculate > input.recal').blur(recalTotal);
-	$('#recalculate > input.recal').keyup(recalTotal);
-	recalTotal();
-	
+
+	$('#calculateTotal > input.cal-input').blur(calTotal);
+	$('#calculateTotal > input.cal-input').keyup(calTotal);
+	calTotal();
 });

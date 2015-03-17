@@ -4,17 +4,17 @@ body {
 	font-family: Verdana,Geneva,sans-serif;
 	background: #FFF0B2;
 }
-#recalculate {
+#calculateTotal {
 	padding:10px;
 }
-#recalculate .recal {
+#calculateTotal .cal-input {
 	display:block;l
 }
 
 #resultHolder {
 	padding: 25px;
 }
-#result {
+#cal-result {
 	font-size: 1.5em;
 	padding: 0px 5px 0px 5px;
 }
