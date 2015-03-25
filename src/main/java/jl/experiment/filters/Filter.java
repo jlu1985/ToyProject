@@ -1,5 +1,7 @@
 package jl.experiment.filters;
 
+import org.apache.commons.lang3.StringUtils;
+
 public interface Filter<T> {
 	public boolean filter(T t);
 }
@@ -25,7 +27,7 @@ class ContainsFilter<T> extends StringMatchingFilter<String> implements
 
 	@Override
 	public boolean filter(String t) {
-		return t.contains(getWord());
+		return StringUtils.contains(t, getWord());
 	}
 
 }
@@ -43,6 +45,25 @@ class ExactMatchFilter<T> extends StringMatchingFilter<String> implements
 	}
 }
 
+class NullFilter<T> implements Filter<T> {
+	
+	@SuppressWarnings("rawtypes")
+	private static final Filter n = new NullFilter();
+	private NullFilter() {
+	}
+
+	@Override
+	public boolean filter(T t) {
+		return false;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static <T> Filter<T> getInstance(){
+		return (Filter<T>)n;
+	}
+	
+}
+
 abstract class LogicalOperationFilter<T> implements Filter<T> {
 	private Filter<T> left;
 	private Filter<T> right;
@@ -53,11 +74,11 @@ abstract class LogicalOperationFilter<T> implements Filter<T> {
 	}
 
 	protected Filter<T> getLeft() {
-		return left;
+		return (left!=null)?left:NullFilter.getInstance();
 	}
 
 	protected Filter<T> getRight() {
-		return right;
+		return (right!=null)?right:NullFilter.getInstance();
 	}
 }
 
@@ -99,24 +120,35 @@ class LogicalOrFilter<T> extends LogicalOperationFilter<T> {
 	}
 
 }
+
 class FilterBuilder<T> {
 	public FilterBuilder(Filter<T> t) {
-		this.f=t;
+		this.f = t;
 	}
+
 	private Filter<T> f;
-	public Filter<T> build(){return f;}
-	
-	public FilterBuilder<T> and(Filter<T>t){
-		f = new LogicalAndFilter<T>(f, t);
+
+	private Filter<T> getReferenceFilter() {
+		return (f != null) ? f : NullFilter.getInstance();
+	}
+
+	private FilterBuilder<T> setReferenceFilter(Filter<T> t) {
+		this.f = t;
 		return this;
 	}
-	public FilterBuilder<T> or(Filter<T> t){
-		f = new LogicalOrFilter<T>(f,t);
-		return this;
+	public Filter<T> build() {
+		return getReferenceFilter();
 	}
-	public FilterBuilder<T> negation(){
-		f = new NegationFilter<T>(f);
-		return this;
-		
+
+	public FilterBuilder<T> and(Filter<T> t) {
+		return setReferenceFilter(new LogicalAndFilter<T>(getReferenceFilter(), t));
+	}
+
+	public FilterBuilder<T> or(Filter<T> t) {
+		return setReferenceFilter(new LogicalOrFilter<T>(getReferenceFilter(), t));
+	}
+
+	public FilterBuilder<T> negation() {
+		return setReferenceFilter(new NegationFilter<T>(getReferenceFilter()));
 	}
 }

@@ -40,4 +40,17 @@ public class FilterTest {
 		
 		assertTrue(group.filter(HELLO_WORLD	));
 		}
+
+
+	@Test
+	public void testLambda() {
+		test = new FilterBuilder<String>(string -> string.equals(HELLO_WORLD)).build();
+		assertTrue(test.filter(HELLO_WORLD));
+	}
+	
+	@Test
+	public void testNull(){
+		test = new FilterBuilder<String>(null).build();
+		assertFalse(test.filter(null));
+	}
 }
