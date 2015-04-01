@@ -46,6 +46,10 @@ dependencies {
 	compile "org.springframework:spring-context:$SPRING_VERSION"
 	compile "org.springframework:spring-beans:$SPRING_VERSION"
 	compile "org.springframework:spring-expression:$SPRING_VERSION"
+	compile "org.springframework:spring-aop:$SPRING_VERSION"
+
+	compile 'org.aspectj:aspectjweaver:1.8.5'
+
 }
 
 
