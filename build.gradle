@@ -52,8 +52,13 @@ dependencies {
 	compile 'org.aspectj:aspectjweaver:1.8.5'
 
 	compile 'commons-dbcp:commons-dbcp:1.4'
+	
+	// Database and driver
 	compile 'org.apache.derby:derby:10.11.1.1'
 	compile 'org.apache.derby:derbyclient:10.11.1.1'
+	compile 'com.h2database:h2:1.4.185'
+	compile 'org.hsqldb:hsqldb:2.3.2'
+	
 
 
 }

@@ -1,4 +1,4 @@
-package jl.playground.apache.database.derby;
+package jl.playground.database.apachederby;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,18 +17,18 @@ public class Derby {
 			System.out.println(conn);
 			try {
 				Statement stmt = conn.createStatement();
-				stmt.execute("CREATE TABLE myTable (id int, name varchar(50))");
+				stmt.execute("CREATE TABLE myTable (id int GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), name varchar(50))");
 			}catch (SQLException e){
-				
+				System.out.println(e.getMessage());
 			}
 			
-			PreparedStatement insertStmt = conn.prepareStatement("INSERT INTO myTable (id, name) VALUES (?,?)");
-			insertStmt.setInt(1, 1);
-			insertStmt.setString(2, "mysql");
+			PreparedStatement insertStmt = conn.prepareStatement("INSERT INTO myTable (name) VALUES (?)");
+//			insertStmt.setInt(1, 1);
+			insertStmt.setString(1, "mysql");
 			insertStmt.execute();
 			
-			insertStmt.setInt(1, 2);
-			insertStmt.setString(2, "derby");
+//			insertStmt.setInt(1, 2);
+			insertStmt.setString(1, "derby");
 			insertStmt.execute();
 			
 			
@@ -39,6 +39,7 @@ public class Derby {
 			}
 			
 			conn.createStatement().execute("DELETE FROM myTable");
+			conn.createStatement().execute("DROP table myTable");
 			DriverManager.getConnection("jdbc:derby:testDB;shutdown=true");
 		} catch (SQLException e) {
 			e.printStackTrace();
