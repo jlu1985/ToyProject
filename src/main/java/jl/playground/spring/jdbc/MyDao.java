@@ -3,6 +3,7 @@ package jl.playground.spring.jdbc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -25,7 +26,7 @@ public class MyDao {
 	}
 	
 	public List<MyData> findAll (){
-		return this.tempalte.query("select id,name from mytable", new MyDataMapper());
+		return this.tempalte.query("select department_id, department_name from department", new MyDataMapper());
 	}
 	
 	/* get generated key */
@@ -33,7 +34,7 @@ public class MyDao {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		tempalte.update(
 				conn ->	{
-					PreparedStatement ps = conn.prepareStatement("INSERT INTO mytable (name) VALUES (?)",new String[] {"id"});
+					PreparedStatement ps = conn.prepareStatement("INSERT INTO department (department_name) VALUES (?)",Statement.RETURN_GENERATED_KEYS);
 					ps.setString(1,name);
 					return ps;
 				}
@@ -47,9 +48,9 @@ public class MyDao {
 //		MyDao dao = context.getBean("myDao",MyDao.class);
 		MyDao dao = new MyDao();
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.H2).addScript("classpath:playgroundSchema.sql").build();
+//		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.H2).addScript("classpath:playgroundSchema.sql").build();
+		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.HSQL).addScript("hsqldb-schema.sql").addScript("hsqldb-data.sql").build();
 		dao.setDataSource(db);
-		
 		
 		System.out.println(dao.findAll());
 		
@@ -66,7 +67,7 @@ class MyDataMapper implements RowMapper<MyData>{
 
 	@Override
 	public MyData mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return new MyData(rs.getInt("id"),rs.getString("name"));
+		return new MyData(rs.getInt("department_id"),rs.getString("department_name"));
 	}
 	
 }
