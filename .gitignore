@@ -11,3 +11,7 @@
 *.ear
 /bin
 build/
+
+#Derby Data file#
+testDB/
+derby.log

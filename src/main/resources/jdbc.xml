@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+	
+	
+<!-- 	<bean id="derbyDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> -->
+<!-- 		<property name="url" value="jdbc:derby:testDB;create=true;"/> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="h2DS" class="jl.playground.database.apachederby.H2" init-method="buildTable" destroy-method="close"> -->
+<!-- 		<property name="url" value="jdbc:h2:mem:test"/> -->
+<!-- 	</bean> -->
+	
+	<bean id="myDao" class="jl.playground.spring.jdbc.MyDao">
+<!-- 		<property name="dataSource" ref="springDB"/> -->
+	</bean>
+	
+<!-- 	<jdbc:embedded-database id="springDB" type="H2"> -->
+<!-- 	<jdbc:script location="classpath:playgroundSchema.sql"/> -->
+<!-- 	</jdbc:embedded-database> -->
+	
+</beans>
